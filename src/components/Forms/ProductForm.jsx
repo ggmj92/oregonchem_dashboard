@@ -35,6 +35,8 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
   const [generatedImages, setGeneratedImages] = useState({});
   const [selectedGeneratedImages, setSelectedGeneratedImages] = useState([]);
   const [isGeneratingImages, setIsGeneratingImages] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastGenerateTime, setLastGenerateTime] = useState(0);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -114,8 +116,21 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
       return;
     }
 
+    // Debounce: prevent rapid successive calls (minimum 3 seconds between calls)
+    const now = Date.now();
+    if (now - lastGenerateTime < 3000) {
+      setErrors({ imageGeneration: "Por favor espere antes de generar más imágenes" });
+      return;
+    }
+
+    if (isGeneratingImages) {
+      setErrors({ imageGeneration: "Ya se están generando imágenes, por favor espere" });
+      return;
+    }
+
     try {
       setIsGeneratingImages(true);
+      setLastGenerateTime(now);
       setErrors({});
 
       if (!currentUser) {
@@ -190,8 +205,21 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
   };
 
   const handleRegenerateImage = async (imageKey) => {
+    // Debounce: prevent rapid successive calls (minimum 2 seconds between calls)
+    const now = Date.now();
+    if (now - lastGenerateTime < 2000) {
+      setErrors({ imageRegeneration: "Por favor espere antes de regenerar más imágenes" });
+      return;
+    }
+
+    if (isGeneratingImages) {
+      setErrors({ imageRegeneration: "Ya se están generando imágenes, por favor espere" });
+      return;
+    }
+
     try {
       setIsGeneratingImages(true);
+      setLastGenerateTime(now);
       
       if (!currentUser) {
         throw new Error("Necesita estar conectado para regenerar imágenes");
@@ -294,7 +322,13 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
       return;
     }
 
+    if (isSubmitting) {
+      setErrors({ submit: "Ya se está enviando el formulario, por favor espere" });
+      return;
+    }
+
     try {
+      setIsSubmitting(true);
       showLoading();
       
       if (!currentUser) {
@@ -367,6 +401,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
     } catch (error) {
       setErrors({ submit: error.message });
     } finally {
+      setIsSubmitting(false);
       hideLoading();
     }
   };
@@ -653,7 +688,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
                 type="button" 
                 className="generate-images-button"
                 onClick={handleGenerateImages}
-                disabled={isGeneratingImages || selectedPresentations.length === 0}
+                disabled={isGeneratingImages || selectedPresentations.length === 0 || isSubmitting}
               >
                 {isGeneratingImages ? 'Generando...' : 'Generar Imágenes'}
               </button>
@@ -690,7 +725,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
                     <button 
                       className="regenerate-button"
                       onClick={() => handleRegenerateImage(key)}
-                      disabled={isGeneratingImages}
+                      disabled={isGeneratingImages || isSubmitting}
                     >
                       Regenerar
                     </button>
@@ -761,8 +796,8 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
 
         {/* 9. Create Product Button */}
         <div className="form-group">
-          <button type="submit" className="submit-button">
-            {submitButtonText}
+          <button type="submit" className="submit-button" disabled={isSubmitting || isGeneratingImages}>
+            {isSubmitting ? 'Enviando...' : submitButtonText}
           </button>
         </div>
 
@@ -770,6 +805,16 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
         {errors.submit && (
           <div className="form-group">
             <span className="error-message">{errors.submit}</span>
+          </div>
+        )}
+        {errors.imageGeneration && (
+          <div className="form-group">
+            <span className="error-message">{errors.imageGeneration}</span>
+          </div>
+        )}
+        {errors.imageRegeneration && (
+          <div className="form-group">
+            <span className="error-message">{errors.imageRegeneration}</span>
           </div>
         )}
       </form>
