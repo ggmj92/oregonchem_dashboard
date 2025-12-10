@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/authContext";
 import SidebarQI from "../components/layout/Sidebar/SidebarQI";
 import Topbar from "../components/layout/Topbar/Topbar";
 import Login from "../pages/auth/Login";
-import Dashboard from "../pages/dashboard/Dashboard";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import QIProductList from "../pages/products/QIProductList";
 import QIProductEditor from "../pages/products/QIProductEditor";
 import QICategoryList from "../pages/categories/QICategoryList";
