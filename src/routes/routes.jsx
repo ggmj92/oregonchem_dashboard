@@ -5,14 +5,14 @@ import SidebarQI from "../components/layout/Sidebar/SidebarQI";
 import Topbar from "../components/layout/Topbar/Topbar";
 import Login from "../pages/auth/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import QIProductList from "../pages/products/QIProductList";
-import QIProductEditor from "../pages/products/QIProductEditor";
-import QICategoryList from "../pages/categories/QICategoryList";
-import QICategoryEditor from "../pages/categories/QICategoryEditor";
-import QIPresentationList from "../pages/presentations/QIPresentationList";
-import QIPresentationEditor from "../pages/presentations/QIPresentationEditor";
-import QIBannerList from "../pages/banners/QIBannerList";
-import QIBannerEditor from "../pages/banners/QIBannerEditor";
+import QIProductList from "../pages/Products/QIProductList";
+import QIProductEditor from "../pages/Products/QIProductEditor";
+import QICategoryList from "../pages/Categories/QICategoryList";
+import QICategoryEditor from "../pages/Categories/QICategoryEditor";
+import QIPresentationList from "../pages/Presentations/QIPresentationList";
+import QIPresentationEditor from "../pages/Presentations/QIPresentationEditor";
+import QIBannerList from "../pages/Banners/QIBannerList";
+import QIBannerEditor from "../pages/Banners/QIBannerEditor";
 import PrivateRoute from "../contexts/PrivateRoute";
 
 const AppRoutes = () => {
