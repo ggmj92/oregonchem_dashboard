@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaSave, FaTimes, FaTrash } from 'react-icons/fa';
 import { ENDPOINTS } from '../../config/api';
 import ImageUpload from '../../components/ImageUpload/ImageUpload';
-import '../products/QIProductEditor.css';
+import '../Products/QIProductEditor.css';
 
 const QIBannerEditor = () => {
     const { id } = useParams();
