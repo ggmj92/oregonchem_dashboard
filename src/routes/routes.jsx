@@ -1,24 +1,19 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../contexts/authContext";
-import Sidebar from "../components/layout/Sidebar/Sidebar";
+import SidebarQI from "../components/layout/Sidebar/SidebarQI";
 import Topbar from "../components/layout/Topbar/Topbar";
 import Login from "../pages/auth/Login";
 import Dashboard from "../pages/dashboard/Dashboard";
-import CreateProduct from "../pages/products/CreateProduct";
-import AllProductsList from "../pages/products/AllProductsList";
-import CreateCategory from "../pages/categories/CreateCategory";
-import CategoryList from "../pages/categories/CategoryList";
-import CreatePresentation from "../pages/presentations/CreatePresentation";
-import PresentationList from "../pages/presentations/PresentationList";
-import CreateBanner from "../pages/banners/CreateBanner";
-import BannerList from "../pages/banners/BannerList";
+import QIProductList from "../pages/products/QIProductList";
+import QIProductEditor from "../pages/products/QIProductEditor";
+import QICategoryList from "../pages/categories/QICategoryList";
+import QICategoryEditor from "../pages/categories/QICategoryEditor";
+import QIPresentationList from "../pages/presentations/QIPresentationList";
+import QIPresentationEditor from "../pages/presentations/QIPresentationEditor";
+import QIBannerList from "../pages/banners/QIBannerList";
+import QIBannerEditor from "../pages/banners/QIBannerEditor";
 import PrivateRoute from "../contexts/PrivateRoute";
-import QuimicaIndustrialAnalytics from "../pages/sites/QuimicaIndustrial/QuimicaIndustrialAnalytics";
-import ProductosQuimicaIndustrial from "../pages/sites/QuimicaIndustrial/products/ProductosQuimicaIndustrial";
-import QuimicaIndustrialBanners from "../pages/sites/QuimicaIndustrial/banners/QuimicaIndustrialBanners";
-import AnalyticsDashboard from "../components/features/Analytics/AnalyticsDashboard";
-import CombinedAnalyticsDashboard from '../components/features/Analytics/CombinedAnalyticsDashboard';
 
 const AppRoutes = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -30,7 +25,7 @@ const AppRoutes = () => {
 
     return (
         <div className="app-container">
-            <Sidebar collapsed={collapsed} />
+            <SidebarQI collapsed={collapsed} />
             <div className="main-content">
                 <Topbar collapsed={collapsed} toggleSidebar={toggleSidebar} />
                 <Routes>
@@ -39,25 +34,27 @@ const AppRoutes = () => {
                     {userLoggedIn ? (
                         <>
                             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-                            
-                            {/* Global Routes */}
-                            <Route path="/productos/crear" element={<PrivateRoute><CreateProduct /></PrivateRoute>} />
-                            <Route path="/productos/todos" element={<PrivateRoute><AllProductsList /></PrivateRoute>} />
-                            <Route path="/categorias/crear" element={<PrivateRoute><CreateCategory /></PrivateRoute>} />
-                            <Route path="/categorias/todas" element={<PrivateRoute><CategoryList /></PrivateRoute>} />
-                            <Route path="/presentaciones/crear" element={<PrivateRoute><CreatePresentation /></PrivateRoute>} />
-                            <Route path="/presentaciones/todas" element={<PrivateRoute><PresentationList /></PrivateRoute>} />
-                            <Route path="/banners/crear" element={<PrivateRoute><CreateBanner /></PrivateRoute>} />
-                            <Route path="/banners/todos" element={<PrivateRoute><BannerList /></PrivateRoute>} />
-                            
-                            {/* Química Industrial Routes */}
-                            <Route path="/quimica-industrial/analytics" element={<PrivateRoute><QuimicaIndustrialAnalytics /></PrivateRoute>} />
-                            <Route path="/quimica-industrial/productos" element={<PrivateRoute><ProductosQuimicaIndustrial /></PrivateRoute>} />
-                            <Route path="/quimica-industrial/banners" element={<PrivateRoute><QuimicaIndustrialBanners /></PrivateRoute>} />
-                            
-                            {/* Analytics Routes */}
-                            <Route path="/analytics" element={<PrivateRoute><AnalyticsDashboard /></PrivateRoute>} />
-                            <Route path="/analytics/combined" element={<PrivateRoute><CombinedAnalyticsDashboard /></PrivateRoute>} />
+
+                            {/* QI Product Routes */}
+                            <Route path="/productos" element={<PrivateRoute><QIProductList /></PrivateRoute>} />
+                            <Route path="/productos/todos" element={<PrivateRoute><QIProductList /></PrivateRoute>} />
+                            <Route path="/productos/crear" element={<PrivateRoute><QIProductEditor /></PrivateRoute>} />
+                            <Route path="/productos/editar/:id" element={<PrivateRoute><QIProductEditor /></PrivateRoute>} />
+
+                            {/* QI Category Routes */}
+                            <Route path="/categorias/todas" element={<PrivateRoute><QICategoryList /></PrivateRoute>} />
+                            <Route path="/categorias/crear" element={<PrivateRoute><QICategoryEditor /></PrivateRoute>} />
+                            <Route path="/categorias/editar/:id" element={<PrivateRoute><QICategoryEditor /></PrivateRoute>} />
+
+                            {/* QI Presentation Routes */}
+                            <Route path="/presentaciones/todas" element={<PrivateRoute><QIPresentationList /></PrivateRoute>} />
+                            <Route path="/presentaciones/crear" element={<PrivateRoute><QIPresentationEditor /></PrivateRoute>} />
+                            <Route path="/presentaciones/editar/:id" element={<PrivateRoute><QIPresentationEditor /></PrivateRoute>} />
+
+                            {/* QI Banner Routes */}
+                            <Route path="/banners/todos" element={<PrivateRoute><QIBannerList /></PrivateRoute>} />
+                            <Route path="/banners/crear" element={<PrivateRoute><QIBannerEditor /></PrivateRoute>} />
+                            <Route path="/banners/editar/:id" element={<PrivateRoute><QIBannerEditor /></PrivateRoute>} />
                         </>
                     ) : (
                         <Route path="*" element={<Navigate to="/login" />} />

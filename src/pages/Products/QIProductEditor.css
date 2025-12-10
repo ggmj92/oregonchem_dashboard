@@ -1,0 +1,320 @@
+.qi-editor {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.qi-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.qi-editor-header h1 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.qi-editor-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.qi-btn-primary,
+.qi-btn-secondary,
+.qi-btn-danger,
+.qi-btn-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.qi-btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.qi-btn-primary:hover:not(:disabled) {
+    background: #1d4ed8;
+}
+
+.qi-btn-primary:disabled {
+    background: #93c5fd;
+    cursor: not-allowed;
+}
+
+.qi-btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.qi-btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+.qi-btn-danger {
+    background: #dc2626;
+    color: white;
+}
+
+.qi-btn-danger:hover {
+    background: #b91c1c;
+}
+
+.qi-btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+}
+
+.qi-editor-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.qi-editor-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.qi-editor-section h2 {
+    font-size: 1.25rem;
+    color: #1f2937;
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.qi-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.qi-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.qi-form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.qi-form-group input[type="text"],
+.qi-form-group input[type="url"],
+.qi-form-group select,
+.qi-form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.qi-form-group input:focus,
+.qi-form-group select:focus,
+.qi-form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.qi-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.qi-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.qi-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    transition: background 0.2s;
+}
+
+.qi-checkbox:hover {
+    background: #f9fafb;
+}
+
+.qi-checkbox input[type="checkbox"] {
+    width: 1.125rem;
+    height: 1.125rem;
+    cursor: pointer;
+}
+
+.qi-checkbox span {
+    font-size: 0.875rem;
+    color: #374151;
+}
+
+.qi-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.qi-tags-input {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.qi-tags-input input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.qi-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.qi-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    background: #dbeafe;
+    color: #1e40af;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+.qi-tag button {
+    background: none;
+    border: none;
+    color: #1e40af;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.qi-tag button:hover {
+    background: rgba(30, 64, 175, 0.1);
+}
+
+.qi-ai-section {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid #bae6fd;
+}
+
+.qi-ai-section h2 {
+    color: #0c4a6e;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.qi-ai-content {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 0.375rem;
+}
+
+.qi-ai-content:last-child {
+    margin-bottom: 0;
+}
+
+.qi-ai-content h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0c4a6e;
+    margin: 0 0 0.5rem 0;
+}
+
+.qi-ai-content p {
+    font-size: 0.875rem;
+    color: #374151;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.qi-note {
+    font-size: 0.875rem;
+    color: #6b7280;
+    background: #f9fafb;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+}
+
+.qi-note strong {
+    color: #374151;
+}
+
+.qi-editor-loading {
+    padding: 3rem;
+    text-align: center;
+    font-size: 1.125rem;
+    color: #6b7280;
+}
+
+@media (max-width: 768px) {
+    .qi-editor {
+        padding: 1rem;
+    }
+
+    .qi-editor-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .qi-editor-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .qi-editor-actions button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .qi-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .qi-checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -3,7 +3,7 @@ services:
     name: oregonchem-dashboard
     env: node
     buildCommand: npm ci && npm run build
-    startCommand: npx serve -s dist -l 10000  # Using serve for production deployment
+    startCommand: npx serve -s dist -l 10000 # Using serve for production deployment
     domains:
       - oregonchem.tech
       - www.oregonchem.tech
@@ -19,7 +19,7 @@ services:
       - key: VITE_API_URL
         value: https://oregonchem-backend.onrender.com
       - key: VITE_FIREBASE_API_KEY
-        value: AIzaSyDDPGR2sp9iThMLH-ziE-020Fh0mEjL7Z8
+        value: AIzaSyDDPGR2sp9iThMLH-ziE-02OFh0mEjL7Z8
       - key: VITE_FIREBASE_AUTH_DOMAIN
         value: oregonchem-pe.firebaseapp.com
       - key: VITE_FIREBASE_PROJECT_ID
@@ -27,9 +27,9 @@ services:
       - key: VITE_GOOGLE_CLOUD_STORAGE_BUCKET
         value: oregonchem-pe.appspot.com
       - key: VITE_FIREBASE_MESSAGING_SENDER_ID
-        value: 15551474139
+        value: 155514741393
       - key: VITE_FIREBASE_APP_ID
-        value: 1:15551474139:web:8b5b5df892bbab8e9f1530
+        value: 1:155514741393:web:8b5b5df892bbab8e9f1530
       - key: VITE_APP_NAME
         value: OregonChem Dashboard
       - key: VITE_APP_VERSION
@@ -63,4 +63,4 @@ services:
     scaling:
       minInstances: 1
       maxInstances: 1
-      targetMemoryPercent: 50 
+      targetMemoryPercent: 50
