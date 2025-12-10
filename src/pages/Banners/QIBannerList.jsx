@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEdit, FaTrash, FaPlus, FaSearch, FaEye, FaEyeSlash, FaImage } from 'react-icons/fa';
 import { ENDPOINTS } from '../../config/api';
-import '../categories/QICategoryList.css';
+import '../Categories/QICategoryList.css';
 
 const QIBannerList = () => {
     const [banners, setBanners] = useState([]);
