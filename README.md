@@ -1,12 +1,25 @@
-# React + Vite
+Oregon Chem Dashboard
+Admin dashboard for managing the Química Industrial product catalog. Built with React + Vite.
+Features
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Product management (create, edit, delete)
+Category and presentation management
+Banner management
+Firebase authentication
+Connects to oregonchem_backend API
 
-Currently, two official plugins are available:
+Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React 18
+Vite
+Firebase Auth
+REST API integration
 
-## Expanding the ESLint configuration
+Related Repos
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+quimicaindustrial-frontend — Public-facing website
+oregonchem_backend — API server
+
+Setup
+npm install
+npm run dev

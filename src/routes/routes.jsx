@@ -7,6 +7,7 @@ import Login from "../pages/auth/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import QIProductList from "../pages/Products/QIProductList";
 import QIProductEditor from "../pages/Products/QIProductEditor";
+import EnhancedProductEditor from "../pages/Products/EnhancedProductEditor";
 import QICategoryList from "../pages/Categories/QICategoryList";
 import QICategoryEditor from "../pages/Categories/QICategoryEditor";
 import QIPresentationList from "../pages/Presentations/QIPresentationList";
@@ -40,6 +41,10 @@ const AppRoutes = () => {
                             <Route path="/productos/todos" element={<PrivateRoute><QIProductList /></PrivateRoute>} />
                             <Route path="/productos/crear" element={<PrivateRoute><QIProductEditor /></PrivateRoute>} />
                             <Route path="/productos/editar/:id" element={<PrivateRoute><QIProductEditor /></PrivateRoute>} />
+
+                            {/* Enhanced Product Editor (New) - Preview Route */}
+                            <Route path="/productos/nuevo" element={<PrivateRoute><EnhancedProductEditor /></PrivateRoute>} />
+                            <Route path="/productos/nuevo/:id" element={<PrivateRoute><EnhancedProductEditor /></PrivateRoute>} />
 
                             {/* QI Category Routes */}
                             <Route path="/categorias/todas" element={<PrivateRoute><QICategoryList /></PrivateRoute>} />
