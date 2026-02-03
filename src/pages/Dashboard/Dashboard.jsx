@@ -1,102 +1,129 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "../../firebase/firebase";
-import Login from "../auth/Login";
-import PresentationForm from "../../components/Forms/PresentationForm";
-import CategoryForm from "../../components/Forms/CategoryForm";
-import BannerForm from "../../components/Forms/BannerForm";
-import ProductForm from "../../components/Forms/ProductForm";
-import { fetchWithCache, API_ENDPOINTS, clearCache } from "../../utils/api";
-import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";
-import "../../styles/Layout.css";
+import { Link } from "react-router-dom";
+import { IoCube, IoAlbums, IoFlask, IoImage } from "react-icons/io5";
+import { ENDPOINTS } from "../../config/api";
+import "./Dashboard.css";
 
 const Dashboard = () => {
-    const [user, setUser] = useState(null);
-    const [presentations, setPresentations] = useState([]);
-    const [categories, setCategories] = useState([]);
+    const [stats, setStats] = useState({
+        products: 0,
+        categories: 0,
+        presentations: 0,
+        banners: 0
+    });
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [isProductFormReady, setIsProductFormReady] = useState(false);
 
-    // Handle authentication
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            setUser(user);
-        });
-        return () => unsubscribe();
+        fetchStats();
     }, []);
 
-    // Fetch data when user is authenticated
-    useEffect(() => {
-        if (user) {
-            fetchContent();
-        }
-    }, [user]);
-
-    const fetchContent = async (force = false) => {
+    const fetchStats = async () => {
         try {
-            setLoading(true);
-            setIsProductFormReady(false);
-            setError(null);
-            
-            const [presentationsData, categoriesData] = await Promise.all([
-                fetchWithCache(API_ENDPOINTS.PRESENTATIONS, {}, force),
-                fetchWithCache(API_ENDPOINTS.CATEGORIES, {}, force)
+            const [productsRes, categoriesRes, presentationsRes, bannersRes] = await Promise.all([
+                fetch(ENDPOINTS.PRODUCTS),
+                fetch(ENDPOINTS.CATEGORIES),
+                fetch(ENDPOINTS.PRESENTATIONS),
+                fetch(ENDPOINTS.BANNERS)
             ]);
 
-            const presentationsList = presentationsData?.data || [];
-            const categoriesList = categoriesData?.data || [];
+            const [products, categories, presentations, banners] = await Promise.all([
+                productsRes.json(),
+                categoriesRes.json(),
+                presentationsRes.json(),
+                bannersRes.json()
+            ]);
 
-            setPresentations(presentationsList);
-            setCategories(categoriesList);
-            setIsProductFormReady(true);
+            setStats({
+                products: products.pagination?.total || products.data?.length || 0,
+                categories: categories.data?.length || 0,
+                presentations: presentations.data?.length || 0,
+                banners: banners.data?.length || 0
+            });
         } catch (error) {
-            setError(error.message || 'An error occurred while fetching content');
-            console.error('Error fetching content:', error);
+            console.error('Error fetching stats:', error);
         } finally {
             setLoading(false);
         }
     };
 
-    const handleContentUpdate = () => {
-        clearCache(); // Clear cache to force fresh data
-        fetchContent(true);
-    };
-
-    if (!user) {
-        return <Login />;
-    }
-
     if (loading) {
-        return <LoadingSpinner />;
-    }
-
-    if (error) {
-        return <div className="container">Error: {error}</div>;
+        return (
+            <div className="dashboard-page">
+                <div className="dashboard-header">
+                    <h1>Cargando...</h1>
+                </div>
+            </div>
+        );
     }
 
     return (
-        <div className="container">
-            <h1>Dashboard</h1>
-            <div className="dashboard-container">
-                <div className="card small-card">
-                    <h2>Crear Presentación</h2>
-                    <PresentationForm onSuccess={handleContentUpdate} />
-                </div>
-                <div className="card large-card">
-                    <h2>Crear Producto</h2>
-                    <ProductForm 
-                        presentations={presentations}
-                        categories={categories}
-                        onSuccess={handleContentUpdate}
-                    />
-                </div>
-                <div className="card small-card">
-                    <h2>Crear Categoría</h2>
-                    <CategoryForm onSuccess={handleContentUpdate} />
-                </div>
-                <div className="card small-card">
-                    <h2>Crear Banner</h2>
-                    <BannerForm onSuccess={handleContentUpdate} />
+        <div className="dashboard-page">
+            <div className="dashboard-header">
+                <h1>Dashboard - Quimica Industrial</h1>
+                <p>Gestiona el contenido de tu sitio web</p>
+            </div>
+
+            <div className="dashboard-stats">
+                <Link to="/productos" className="stat-card">
+                    <div className="stat-icon">
+                        <IoCube />
+                    </div>
+                    <div className="stat-info">
+                        <h3>Productos</h3>
+                        <p className="stat-number">{stats.products}</p>
+                    </div>
+                </Link>
+
+                <Link to="/categorias/todas" className="stat-card">
+                    <div className="stat-icon">
+                        <IoAlbums />
+                    </div>
+                    <div className="stat-info">
+                        <h3>Categorías</h3>
+                        <p className="stat-number">{stats.categories}</p>
+                    </div>
+                </Link>
+
+                <Link to="/presentaciones/todas" className="stat-card">
+                    <div className="stat-icon">
+                        <IoFlask />
+                    </div>
+                    <div className="stat-info">
+                        <h3>Presentaciones</h3>
+                        <p className="stat-number">{stats.presentations}</p>
+                    </div>
+                </Link>
+
+                <Link to="/banners/todos" className="stat-card">
+                    <div className="stat-icon">
+                        <IoImage />
+                    </div>
+                    <div className="stat-info">
+                        <h3>Banners</h3>
+                        <p className="stat-number">{stats.banners}</p>
+                    </div>
+                </Link>
+            </div>
+
+            <div className="dashboard-quick-actions">
+                <h2>Acciones Rápidas</h2>
+                <div className="quick-actions-grid">
+                    <Link to="/productos/crear" className="action-button">
+                        <IoCube />
+                        <span>Crear Producto</span>
+                    </Link>
+                    <Link to="/categorias/crear" className="action-button">
+                        <IoAlbums />
+                        <span>Crear Categoría</span>
+                    </Link>
+                    <Link to="/presentaciones/crear" className="action-button">
+                        <IoFlask />
+                        <span>Crear Presentación</span>
+                    </Link>
+                    <Link to="/banners/crear" className="action-button">
+                        <IoImage />
+                        <span>Crear Banner</span>
+                    </Link>
                 </div>
             </div>
         </div>
