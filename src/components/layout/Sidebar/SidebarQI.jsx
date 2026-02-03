@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { IoHome, IoCube, IoAlbums, IoFlask, IoImage, IoChevronDown, IoChevronForward } from "react-icons/io5";
+import { IoHome, IoCube, IoAlbums, IoFlask, IoImage, IoDocumentText, IoChevronDown, IoChevronForward } from "react-icons/io5";
 import logo from "../../../images/oregonchemlogo.png";
 import shortLogo from "../../../images/oregonchemlogoshort.png";
 import { useAuth } from "../../../contexts/authContext";
@@ -126,6 +126,14 @@ const SidebarQI = ({ collapsed }) => {
                             </li>
                         </ul>
                     )}
+                </li>
+
+                {/* Quotes */}
+                <li>
+                    <NavLink to="/cotizaciones" className="sidebar__link">
+                        <IoDocumentText />
+                        <span>Cotizaciones</span>
+                    </NavLink>
                 </li>
             </ul>
         </div>

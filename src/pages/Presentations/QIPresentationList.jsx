@@ -114,7 +114,13 @@ const QIPresentationList = () => {
                     <div key={presentation._id} className="qi-category-card">
                         <div className="qi-category-image">
                             {presentation.image?.url ? (
-                                <img src={presentation.image.url} alt={presentation.pretty} />
+                                <img 
+                                    src={presentation.image.url.startsWith('/images/') 
+                                        ? `https://quimicaindustrial.pe${presentation.image.url}` 
+                                        : presentation.image.url
+                                    } 
+                                    alt={presentation.pretty} 
+                                />
                             ) : (
                                 <div className="qi-category-placeholder">
                                     <FaFlask />

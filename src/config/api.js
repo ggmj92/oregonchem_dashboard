@@ -10,6 +10,7 @@ export const ENDPOINTS = {
     CATEGORIES: `${API_URL}/api/qi/categories`,
     PRESENTATIONS: `${API_URL}/api/qi/presentations`,
     PRODUCTS: `${API_URL}/api/qi/products`,
+    QUOTES: `${API_URL}/api/public/quotes`,
 
     // Legacy endpoints (OLD - kept for reference, will be removed)
     LEGACY: {

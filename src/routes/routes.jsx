@@ -13,6 +13,7 @@ import QIPresentationList from "../pages/Presentations/QIPresentationList";
 import QIPresentationEditor from "../pages/Presentations/QIPresentationEditor";
 import QIBannerList from "../pages/Banners/QIBannerList";
 import QIBannerEditor from "../pages/Banners/QIBannerEditor";
+import QIQuoteList from "../pages/Quotes/QIQuoteList";
 import PrivateRoute from "../contexts/PrivateRoute";
 
 const AppRoutes = () => {
@@ -63,6 +64,9 @@ const AppRoutes = () => {
                     <Route path="/banners/todos" element={<PrivateRoute><QIBannerList /></PrivateRoute>} />
                     <Route path="/banners/crear" element={<PrivateRoute><QIBannerEditor /></PrivateRoute>} />
                     <Route path="/banners/editar/:id" element={<PrivateRoute><QIBannerEditor /></PrivateRoute>} />
+
+                    {/* QI Quote Routes */}
+                    <Route path="/cotizaciones" element={<PrivateRoute><QIQuoteList /></PrivateRoute>} />
                 </Routes>
             </div>
         </div>
