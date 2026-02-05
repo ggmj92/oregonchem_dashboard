@@ -6,9 +6,6 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import logo from "../../images/oregonchemlogo.png";
-import emailIcon from "../../images/emailicon.png";
-import passwordIcon from "../../images/passwordicon.png";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -59,11 +56,16 @@ const Login = () => {
     return (
         <>
             <div className="login_container">
-                <img className="login_logo" src={logo} alt="Oregon Chem Logo" />
+                <div className="login_logo" style={{ fontSize: '28px', fontWeight: 'bold', color: '#2c3e50', marginBottom: '30px' }}>
+                    Química Industrial Dashboard
+                </div>
 
                 <form onSubmit={handleLogin}>
                     <div className="login_input_container">
-                        <img className="login_icon" src={emailIcon} alt="Email Icon" />
+                        <svg className="login_icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
                         <div className="login_input_wrapper">
                             <div className="login_separator"></div>
                             <input
@@ -78,7 +80,10 @@ const Login = () => {
                     </div>
 
                     <div className="login_input_container">
-                        <img className="login_icon" src={passwordIcon} alt="Password Icon" />
+                        <svg className="login_icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
                         <div className="login_input_wrapper">
                             <div className="login_separator"></div>
                             <input
