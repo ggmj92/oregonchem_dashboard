@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaSave, FaTimes, FaTrash } from 'react-icons/fa';
 import { ENDPOINTS } from '../../config/api';
-import '../Products/EnhancedProductEditor.css';
+import '../Products/QIEditor.css';
 
 const QIPresentationEditor = () => {
     const { id } = useParams();

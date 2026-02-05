@@ -56,9 +56,7 @@ const Login = () => {
     return (
         <>
             <div className="login_container">
-                <div className="login_logo" style={{ fontSize: '28px', fontWeight: 'bold', color: '#2c3e50', marginBottom: '30px' }}>
-                    Química Industrial Dashboard
-                </div>
+                <img className="login_logo" src="/images/oregonchem-logo.svg" alt="Oregon Chem Logo" style={{ width: '200px', marginBottom: '30px' }} />
 
                 <form onSubmit={handleLogin}>
                     <div className="login_input_container">

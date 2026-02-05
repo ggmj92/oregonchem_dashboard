@@ -21,8 +21,16 @@ const SidebarQI = ({ collapsed }) => {
     return (
         <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
             <div className="sidebar__header">
-                <div className="sidebar-logo" style={{ padding: '20px', textAlign: 'center', fontSize: collapsed ? '18px' : '20px', fontWeight: 'bold', color: '#fff' }}>
-                    {collapsed ? 'QI' : 'Química Industrial'} Dashboard
+                <div className="sidebar-logo" style={{ padding: '20px', textAlign: 'center' }}>
+                    <img 
+                        src="/images/oregonchem-logo.svg" 
+                        alt="Oregon Chem Logo" 
+                        style={{ 
+                            width: collapsed ? '40px' : '160px',
+                            height: 'auto',
+                            transition: 'width 0.3s'
+                        }} 
+                    />
                 </div>
             </div>
 
