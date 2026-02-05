@@ -31,6 +31,7 @@ const EnhancedProductEditor = () => {
         status: 'draft',
         physicalState: 'unknown',
         featured: false,
+        fiscalizado: false,
         brand: '',
 
         // Descriptions
@@ -606,6 +607,19 @@ const EnhancedProductEditor = () => {
                             </label>
                             <small className="epe-helper-text">Aparecerá en la sección destacados de la página principal</small>
                         </div>
+
+                        <div className="epe-form-group">
+                            <label className="epe-checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    name="fiscalizado"
+                                    checked={formData.fiscalizado}
+                                    onChange={handleChange}
+                                />
+                                <span>Producto Fiscalizado</span>
+                            </label>
+                            <small className="epe-helper-text">Producto controlado por el gobierno peruano</small>
+                        </div>
                     </div>
                 </section>
 
@@ -983,6 +997,10 @@ const EnhancedProductEditor = () => {
                                     <div className="epe-summary-item">
                                         <strong>Destacado:</strong>
                                         <span>{formData.featured ? 'Sí' : 'No'}</span>
+                                    </div>
+                                    <div className="epe-summary-item">
+                                        <strong>Fiscalizado:</strong>
+                                        <span>{formData.fiscalizado ? 'Sí' : 'No'}</span>
                                     </div>
                                 </div>
                             </div>
