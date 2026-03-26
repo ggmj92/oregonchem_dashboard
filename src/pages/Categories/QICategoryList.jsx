@@ -113,7 +113,13 @@ const QICategoryList = () => {
                     <div key={category._id} className="qi-category-card">
                         <div className="qi-category-image">
                             {category.image?.url ? (
-                                <img src={category.image.url} alt={category.name} />
+                                <img 
+                                    src={category.image.url.startsWith('/images/') 
+                                        ? `https://quimicaindustrial.pe${category.image.url}` 
+                                        : category.image.url
+                                    } 
+                                    alt={category.name} 
+                                />
                             ) : (
                                 <div className="qi-category-placeholder">
                                     <FaImage />

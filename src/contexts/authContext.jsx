@@ -15,20 +15,26 @@ export function AuthProvider({ children }) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, 
-            (user) => {
-                setCurrentUser(user);
-                setUserLoggedIn(!!user);
-                setLoading(false);
-            },
-            (error) => {
-                setError(error.message);
-                setLoading(false);
-                console.error('Auth state change error:', error);
-            }
-        );
+        try {
+            const unsubscribe = onAuthStateChanged(auth,
+                (user) => {
+                    setCurrentUser(user);
+                    setUserLoggedIn(!!user);
+                    setLoading(false);
+                },
+                (error) => {
+                    setError(error.message);
+                    setLoading(false);
+                    console.error('Auth state change error:', error);
+                }
+            );
 
-        return unsubscribe;
+            return unsubscribe;
+        } catch (error) {
+            console.error('Failed to initialize auth listener:', error);
+            setError(error.message);
+            setLoading(false);
+        }
     }, []);
 
     const value = {

@@ -1,0 +1,13 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Blue circle with white inner circle -->
+  <circle cx="30" cy="30" r="28" fill="#0066CC"/>
+  <circle cx="30" cy="30" r="20" fill="none" stroke="white" stroke-width="3"/>
+  <circle cx="30" cy="30" r="12" fill="white"/>
+  <circle cx="30" cy="30" r="8" fill="#0066CC"/>
+  
+  <!-- OREGON text -->
+  <text x="65" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#4A4A4A">OREGON</text>
+  
+  <!-- CHEM DIGITAL text -->
+  <text x="65" y="50" font-family="Arial, sans-serif" font-size="10" fill="#0066CC" letter-spacing="2">CHEM DIGITAL</text>
+</svg>

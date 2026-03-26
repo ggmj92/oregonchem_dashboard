@@ -155,13 +155,19 @@ const QIProductList = () => {
             const presentation = presentations.find(p => p._id === firstPresentationId);
 
             if (presentation?.image?.url) {
-                return presentation.image.url;
+                const imageUrl = presentation.image.url;
+                // If it's a relative path, prepend the frontend URL
+                if (imageUrl.startsWith('/images/')) {
+                    return `https://quimicaindustrial.pe${imageUrl}`;
+                }
+                // If it's already a full URL (Firebase), use as-is
+                return imageUrl;
             }
         }
 
-        // If no presentation image, use placeholder based on physical state
+        // If no presentation image, use placeholder from frontend
         const isLiquid = product.physicalState === 'liquido';
-        return `/images/placeholders/presentation-placeholder-${isLiquid ? 'liquido' : 'solido'}.png`;
+        return `https://quimicaindustrial.pe/images/placeholders/presentation-placeholder-${isLiquid ? 'liquido' : 'solido'}.png`;
     };
 
     if (loading) {
@@ -242,6 +248,10 @@ const QIProductList = () => {
                                         src={getProductImage(product)}
                                         alt={product.title}
                                         className="qi-product-thumb"
+                                        onError={(e) => {
+                                            console.error('Failed to load image:', getProductImage(product));
+                                            e.target.style.display = 'none';
+                                        }}
                                     />
                                 </td>
                                 <td>

@@ -1,0 +1,287 @@
+/* QI Editor Styles - Shared across all editors (Products, Categories, Presentations, Banners) */
+
+.qi-editor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.qi-editor-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.qi-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.qi-editor-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.qi-editor-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.qi-editor-actions button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.qi-editor-actions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.qi-editor-actions button:first-child {
+    background: #0d47a1;
+    color: white;
+}
+
+.qi-editor-actions button:first-child:hover:not(:disabled) {
+    background: #1565c0;
+}
+
+.qi-editor-actions button:nth-child(2) {
+    background: #6b7280;
+    color: white;
+}
+
+.qi-editor-actions button:nth-child(2):hover {
+    background: #4b5563;
+}
+
+.qi-editor-actions button:last-child {
+    background: #dc2626;
+    color: white;
+}
+
+.qi-editor-actions button:last-child:hover {
+    background: #b91c1c;
+}
+
+.qi-editor-form {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.qi-form-section {
+    margin-bottom: 2rem;
+}
+
+.qi-form-section:last-child {
+    margin-bottom: 0;
+}
+
+.qi-form-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.qi-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.qi-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.qi-form-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.qi-form-group input[type="text"],
+.qi-form-group input[type="number"],
+.qi-form-group input[type="url"],
+.qi-form-group input[type="email"],
+.qi-form-group select,
+.qi-form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: white;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.qi-form-group input:focus,
+.qi-form-group select:focus,
+.qi-form-group textarea:focus {
+    outline: none;
+    border-color: #0d47a1;
+    box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.1);
+}
+
+.qi-form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.qi-form-group small {
+    display: block;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+.qi-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.qi-form-group-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.qi-form-group-inline input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+}
+
+.qi-form-group-inline label {
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Image Upload Section */
+.qi-image-section {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.qi-image-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: #374151;
+}
+
+.qi-image-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .qi-editor {
+        padding: 1rem;
+    }
+
+    .qi-editor-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .qi-editor-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .qi-editor-actions button {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .qi-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .qi-editor-form {
+        padding: 1.5rem;
+    }
+}
+
+/* Banner specific styles */
+.qi-banner-type-select {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.qi-banner-type-select label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+}
+
+.qi-banner-type-select label:hover {
+    border-color: #0d47a1;
+    background: #f0f7ff;
+}
+
+.qi-banner-type-select input[type="radio"] {
+    cursor: pointer;
+}
+
+.qi-banner-type-select input[type="radio"]:checked + span {
+    color: #0d47a1;
+    font-weight: 600;
+}
+
+/* Status badge */
+.qi-status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.qi-status-active {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.qi-status-inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}

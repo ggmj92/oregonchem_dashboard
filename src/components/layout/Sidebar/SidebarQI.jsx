@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { IoHome, IoCube, IoAlbums, IoFlask, IoImage, IoChevronDown, IoChevronForward } from "react-icons/io5";
-import logo from "../../../images/oregonchemlogo.png";
-import shortLogo from "../../../images/oregonchemlogoshort.png";
+import { IoHome, IoCube, IoAlbums, IoFlask, IoImage, IoDocumentText, IoChevronDown, IoChevronForward } from "react-icons/io5";
 import { useAuth } from "../../../contexts/authContext";
 import "./Sidebar.css";
 
@@ -23,9 +21,17 @@ const SidebarQI = ({ collapsed }) => {
     return (
         <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
             <div className="sidebar__header">
-                <NavLink to="/" className="sidebar__logo">
-                    <img src={collapsed ? shortLogo : logo} alt="QI Dashboard" />
-                </NavLink>
+                <div className="sidebar-logo" style={{ padding: '20px', textAlign: 'center' }}>
+                    <img 
+                        src="/images/oregonchem-logo.svg" 
+                        alt="Oregon Chem Logo" 
+                        style={{ 
+                            width: collapsed ? '40px' : '160px',
+                            height: 'auto',
+                            transition: 'width 0.3s'
+                        }} 
+                    />
+                </div>
             </div>
 
             <ul className="sidebar__menu">
@@ -126,6 +132,14 @@ const SidebarQI = ({ collapsed }) => {
                             </li>
                         </ul>
                     )}
+                </li>
+
+                {/* Quotes */}
+                <li>
+                    <NavLink to="/cotizaciones" className="sidebar__link">
+                        <IoDocumentText />
+                        <span>Cotizaciones</span>
+                    </NavLink>
                 </li>
             </ul>
         </div>
