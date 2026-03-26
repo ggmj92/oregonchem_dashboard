@@ -34,7 +34,7 @@ const UpdateProductForm = ({ product, onSuccess, isQuimicaIndustrial = false }) 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!showConfirmation) {
       setShowConfirmation(true);
       return;
@@ -42,7 +42,7 @@ const UpdateProductForm = ({ product, onSuccess, isQuimicaIndustrial = false }) 
 
     try {
       showLoading();
-      
+
       if (!currentUser) {
         throw new Error("You need to be logged in to update a product.");
       }
@@ -51,18 +51,18 @@ const UpdateProductForm = ({ product, onSuccess, isQuimicaIndustrial = false }) 
       const formData = new FormData();
       const productName = document.getElementById("product-name").value;
       formData.append("name", productName);
-      
+
       const selectedPresentations = Array.from(document.querySelectorAll('input[name="presentations"]:checked'))
         .map(input => input.value);
       selectedPresentations.forEach(p => formData.append("presentations[]", p));
-      
+
       const selectedCategories = Array.from(document.querySelectorAll('input[name="categories"]:checked'))
         .map(input => input.value);
       selectedCategories.forEach(c => formData.append("categories[]", c));
 
       const descriptions = {};
       const uses = {};
-      
+
       if (isQuimicaIndustrial) {
         // For Quimica Industrial, only update site1
         const descInput = document.getElementById('description-1');
@@ -97,7 +97,7 @@ const UpdateProductForm = ({ product, onSuccess, isQuimicaIndustrial = false }) 
 
       const result = await response.json();
       showSuccess("Producto actualizado exitosamente");
-      
+
       if (onSuccess) {
         onSuccess();
       }
