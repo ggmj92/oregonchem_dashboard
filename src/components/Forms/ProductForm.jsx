@@ -24,10 +24,10 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
   const [uses, setUses] = useState(initialData?.uses || {});
   const [prices, setPrices] = useState(initialData?.prices || {});
   const [productImages, setProductImages] = useState(
-    initialData?.images ? Object.entries(initialData.images).map(([site, url]) => ({ 
-      site, 
-      file: null, 
-      previewUrl: url 
+    initialData?.images ? Object.entries(initialData.images).map(([site, url]) => ({
+      site,
+      file: null,
+      previewUrl: url
     })) : []
   );
   const [presentationPrompts, setPresentationPrompts] = useState({});
@@ -83,7 +83,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
     setProductImages((prev) => {
       const existing = prev.find(img => img.site === siteId);
       if (existing) {
-        return prev.map(img => 
+        return prev.map(img =>
           img.site === siteId ? { ...img, file, previewUrl } : img
         );
       } else {
@@ -127,11 +127,11 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
 
       // Prepare presentations data in the format expected by the API
       const presentaciones = [];
-      
+
       for (const presentationId of selectedPresentations) {
         const presentation = presentations.find(p => p._id === presentationId);
         const quantities = presentationQuantities[presentationId]?.split(',').map(q => q.trim()).filter(q => q) || ['default'];
-        
+
         // Add an entry for each quantity
         quantities.forEach(quantity => {
           presentaciones.push({
@@ -160,10 +160,10 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
       }
 
       const result = await response.json();
-      
+
       if (result.success && result.results) {
         const newGeneratedImages = {};
-        
+
         result.results.forEach((imageResult, index) => {
           if (imageResult.success && imageResult.imageData) {
             const imageKey = `${imageResult.presentationId}_${imageResult.presentacion}`;
@@ -192,7 +192,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
   const handleRegenerateImage = async (imageKey) => {
     try {
       setIsGeneratingImages(true);
-      
+
       if (!currentUser) {
         throw new Error("Necesita estar conectado para regenerar imágenes");
       }
@@ -223,7 +223,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
       }
 
       const result = await response.json();
-      
+
       if (result.success && result.results && result.results.length > 0) {
         const imageResult = result.results[0];
         if (imageResult.success && imageResult.imageData) {
@@ -251,11 +251,11 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (selectedPresentations.length === 0) {
       newErrors.presentations = "Please select at least one presentation";
     }
-    
+
     if (selectedCategories.length === 0) {
       newErrors.categories = "Please select at least one category";
     }
@@ -263,7 +263,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
     if (selectedFrontends.length === 0) {
       newErrors.frontends = "Please select at least one frontend";
     }
-    
+
     // Only validate descriptions, uses, images, and prices for selected frontends
     selectedFrontends.forEach((frontend) => {
       const frontendOption = FRONTEND_OPTIONS.find(f => f.id === frontend);
@@ -276,7 +276,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
       if (!prices[frontend] || prices[frontend] <= 0) {
         newErrors[`price${frontend}`] = `Price for ${frontendOption?.label} is required`;
       }
-      
+
       const imageForSite = productImages.find(img => img.site === frontend);
       if (!imageForSite?.file && !imageForSite?.previewUrl) {
         newErrors[`image${frontend}`] = `Image for ${frontendOption?.label} is required`;
@@ -289,14 +289,14 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     try {
       showLoading();
-      
+
       if (!currentUser) {
         throw new Error("You need to be logged in to submit a product.");
       }
@@ -314,7 +314,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
         formData.append(`descriptions[${frontend}]`, descriptions[frontend] || "");
         formData.append(`uses[${frontend}]`, uses[frontend] || "");
         formData.append(`prices[${frontend}]`, prices[frontend] || "");
-        
+
         const imageForSite = productImages.find(img => img.site === frontend);
         if (imageForSite?.file) {
           formData.append(`images[${frontend}]`, imageForSite.file);
@@ -358,9 +358,9 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
       setSelectedCategories([]);
       setSelectedFrontends(['site1']);
       setErrors({});
-      
+
       showSuccess("Product added successfully!");
-      
+
       if (onSuccess) {
         onSuccess();
       }
@@ -531,7 +531,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
         {/* 7. Complete Presentation Select Section with GENERATE button */}
         <div className="form-group presentations-section">
           <h2 className="section-title">Presentaciones</h2>
-          
+
           {/* Debug info */}
           {process.env.NODE_ENV === 'development' && (
             <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
@@ -543,21 +543,21 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
               )}
             </div>
           )}
-          
+
           {/* Presentation Selector */}
           <div className="form-group">
             <label className="card-label">Seleccionar Presentaciones</label>
             <div className="presentation-grid">
               {presentations && presentations.length > 0 ? (
                 presentations.map((presentation) => (
-                  <div 
-                    key={presentation._id} 
+                  <div
+                    key={presentation._id}
                     className={`presentation-card ${selectedPresentations.includes(presentation._id) ? 'selected' : ''}`}
                     onClick={() => toggleSelection(selectedPresentations, setSelectedPresentations, presentation._id)}
                   >
                     <div className="presentation-image">
                       {presentation.templateImage ? (
-                        <img 
+                        <img
                           src={presentation.templateImage.startsWith('data:') ? presentation.templateImage : `data:image/png;base64,${presentation.templateImage}`}
                           alt={presentation.name}
                           className="template-preview"
@@ -571,7 +571,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
                           }}
                         />
                       ) : null}
-                      <div 
+                      <div
                         className="template-placeholder"
                         style={{ display: presentation.templateImage ? 'none' : 'flex' }}
                       >
@@ -649,8 +649,8 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
           {/* Generate Images Button */}
           {presentations && presentations.length > 0 && (
             <div className="form-group">
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="generate-images-button"
                 onClick={handleGenerateImages}
                 disabled={isGeneratingImages || selectedPresentations.length === 0}
@@ -678,8 +678,8 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
               <div className="generated-images-grid">
                 {Object.entries(generatedImages).map(([key, imageData]) => (
                   <div key={key} className="generated-image-card">
-                    <img 
-                      src={imageData.url} 
+                    <img
+                      src={imageData.url}
                       alt={imageData.presentationName}
                       className="generated-thumbnail"
                     />
@@ -687,7 +687,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
                       <span className="presentation-name">{imageData.presentationName}</span>
                       <span className="quantity">{imageData.quantity}</span>
                     </div>
-                    <button 
+                    <button
                       className="regenerate-button"
                       onClick={() => handleRegenerateImage(key)}
                       disabled={isGeneratingImages}
@@ -706,7 +706,7 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
           <div className="form-group image-attachment-section">
             <h2 className="section-title">Adjuntar Imágenes Generadas</h2>
             <p className="helper-text">
-              Seleccione las imágenes generadas que desea adjuntar al producto. 
+              Seleccione las imágenes generadas que desea adjuntar al producto.
               Puede seleccionar todas, algunas o ninguna.
             </p>
             <div className="attachment-images-grid">
@@ -726,8 +726,8 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
                       }}
                     />
                     <label htmlFor={`attach-${key}`} className="attachment-label">
-                      <img 
-                        src={imageData.url} 
+                      <img
+                        src={imageData.url}
                         alt={imageData.presentationName}
                         className="attachment-thumbnail"
                       />
@@ -741,15 +741,15 @@ const ProductForm = ({ presentations: propsPresentations, categories: propsCateg
               ))}
             </div>
             <div className="attachment-actions">
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="select-all-button"
                 onClick={() => setSelectedGeneratedImages(Object.keys(generatedImages))}
               >
                 Seleccionar Todas
               </button>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="deselect-all-button"
                 onClick={() => setSelectedGeneratedImages([])}
               >
