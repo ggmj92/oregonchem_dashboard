@@ -23,7 +23,7 @@ const initializeAnalytics = async () => {
     if (typeof window === 'undefined' || !navigator.onLine) {
         return;
     }
-    
+
     try {
         const supported = await isSupported();
         if (supported) {

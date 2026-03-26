@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoHome, IoCube, IoAlbums, IoFlask, IoImage, IoGlobe, IoAnalytics, IoChevronDown, IoChevronForward } from "react-icons/io5";
-import logo from "../../../images/oregonchemlogo.png";
-import shortLogo from "../../../images/oregonchemlogoshort.png";
 import { useAuth } from "../../../contexts/authContext";
 import "./Sidebar.css";
 
@@ -25,9 +23,17 @@ const Sidebar = ({ collapsed }) => {
     return (
         <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
             <div className="sidebar__header">
-                <NavLink to="/" className="sidebar__logo">
-                    <img src={collapsed ? shortLogo : logo} alt="OregonChemLogo" />
-                </NavLink>
+                <div className="sidebar-logo" style={{ padding: '20px', textAlign: 'center' }}>
+                    <img 
+                        src="/images/oregonchem-logo.svg" 
+                        alt="Oregon Chem Logo" 
+                        style={{ 
+                            width: collapsed ? '40px' : '160px',
+                            height: 'auto',
+                            transition: 'width 0.3s'
+                        }} 
+                    />
+                </div>
             </div>
 
             <ul className="sidebar__menu">
