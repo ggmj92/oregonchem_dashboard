@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../config/firebase';
+import { storage } from '../../firebase/firebase';
 import { FaUpload, FaTrash, FaSpinner } from 'react-icons/fa';
 import './ImageUpload.css';
 
