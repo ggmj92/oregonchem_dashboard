@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./contexts/authContext";
 import { LoadingProvider } from "./contexts/loadingContext";
-import { ViewModeProvider } from "./contexts/ViewModeContext";
 import { useLoading } from "./contexts/loadingContext";
 import AppRoutes from "./routes/routes";
 import "./App.css";
@@ -40,9 +39,7 @@ const App = () => {
     >
       <AuthProvider>
         <LoadingProvider>
-          <ViewModeProvider>
-            <AppContent />
-          </ViewModeProvider>
+          <AppContent />
         </LoadingProvider>
       </AuthProvider>
     </Router>
