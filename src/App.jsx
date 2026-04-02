@@ -13,55 +13,14 @@ const AppContent = () => {
   return (
     <>
       {isLoading && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          zIndex: 9999
-        }}>
-          <div style={{
-            width: '50px',
-            height: '50px',
-            border: '5px solid #f3f3f3',
-            borderTop: '5px solid #3498db',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite'
-          }} />
+        <div className="loading-overlay">
+          <div className="loading-spinner" />
         </div>
       )}
       {successMessage && (
-        <div style={{
-          position: 'fixed',
-          top: '20px',
-          right: '20px',
-          backgroundColor: '#4caf50',
-          color: 'white',
-          padding: '15px 20px',
-          borderRadius: '4px',
-          boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        }}>
+        <div className="success-toast">
           <span>{successMessage}</span>
-          <button
-            onClick={() => showSuccess(null)}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'white',
-              cursor: 'pointer',
-              fontSize: '18px',
-              padding: '0 5px'
-            }}
-          >
+          <button onClick={() => showSuccess(null)} className="success-toast-close">
             ×
           </button>
         </div>
