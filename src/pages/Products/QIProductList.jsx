@@ -36,10 +36,6 @@ const QIProductList = () => {
                 const categoriesData = await categoriesRes.json();
                 const presentationsData = await presentationsRes.json();
 
-                console.log('Products:', productsData);
-                console.log('Categories:', categoriesData);
-                console.log('Presentations:', presentationsData);
-
                 setProducts(productsData.data || []);
                 setFilteredProducts(productsData.data || []);
                 setCategories(categoriesData.data || []);

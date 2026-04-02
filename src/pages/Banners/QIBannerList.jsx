@@ -24,8 +24,6 @@ const QIBannerList = () => {
                 }
 
                 const data = await response.json();
-                console.log('Banners:', data);
-
                 // Sort by sortOrder
                 const sorted = (data.data || []).sort((a, b) => a.sortOrder - b.sortOrder);
                 setBanners(sorted);
