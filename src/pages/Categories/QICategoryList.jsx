@@ -23,8 +23,6 @@ const QICategoryList = () => {
                 }
 
                 const data = await response.json();
-                console.log('Categories:', data);
-
                 setCategories(data.data || []);
                 setFilteredCategories(data.data || []);
                 setLoading(false);

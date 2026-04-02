@@ -23,8 +23,6 @@ const QIPresentationList = () => {
                 }
 
                 const data = await response.json();
-                console.log('Presentations:', data);
-
                 // Sort by sortOrder
                 const sorted = (data.data || []).sort((a, b) => a.sortOrder - b.sortOrder);
                 setPresentations(sorted);
